@@ -3,15 +3,35 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import Counter from "./component/Counter"
+import { Provider } from "react-redux";
+import {countReducer,testReducer} from './redux/reducer';
+
+import { combineReducers,createStore } from 'redux';
+
+const initState = {
+  count:1,
+  test:0};
+
+const rootReducer = combineReducers({
+  countReducer,
+  testReducer
+})
+
+
+const store = createStore(rootReducer,initState);
+
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // <React.StrictMode>
+  //   <App />
+  // </React.StrictMode>,
+  <Provider store={store}>
+    <Counter />
+  </Provider>,
+  
   document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
