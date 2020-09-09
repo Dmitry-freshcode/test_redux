@@ -4,22 +4,22 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Counter from "./component/Counter"
+
 import { Provider } from "react-redux";
-import {countReducer,testReducer} from './redux/reducer';
+import reducerCount from './redux/reducerCount';
+import reducerCount2 from './redux/reducerCount2';
 
 import { combineReducers,createStore } from 'redux';
 
-const initState = {
-  count:1,
-  test:0};
 
 const rootReducer = combineReducers({
-  countReducer,
-  testReducer
+  count1: reducerCount,
+  count2: reducerCount2
 })
 
 
-const store = createStore(rootReducer,initState);
+
+const store = createStore(rootReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 
 
